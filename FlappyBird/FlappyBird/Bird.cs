@@ -33,7 +33,7 @@ namespace FlappyBird
 		public bool Alive { get{return alive;} set{alive = value;} }
 		
 		//Accessors.
-		//public SpriteUV Sprite { get{return sprite;} }
+		public SpriteUV Sprite { get{return sprite;} }
 		
 		//Public functions.
 		public Bird (Scene scene)
@@ -62,32 +62,45 @@ namespace FlappyBird
 		
 		public void Update(float deltaTime)
 		{			
+
+			
 			//adjust the push
 			if(rise)
 			{
-				if()
+				// Float variable for the position of the top of the ship
+				float top = (sprite.Position.Y + SpriteHeight);
+				
+				
+				if(top < Director.Instance.GL.Context.GetViewport().Height)
 				{
 					//sprite.Rotate(0.008f);
-					if( (sprite.Position.Y-yPositionBeforePush) < pushAmount)
+					if( (sprite.Position.Y-yPositionBeforePush) < pushAmount && top < Director.Instance.GL.Context.GetViewport().Height - 4)
 						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + 3f);
 					else
 						rise = false;
 				}
 				else
 				{
+					//Console.WriteLine ("In top Else!");
+					sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - 3);
 				}
 			}
 			else
 			{
-				float bottom = (sprite.Position.Y + SpriteHeight);
+				float bottom = (sprite.Position.Y);
 				//sprite.Rotate(-0.005f);
-				if(bottom <= Director.Instance.GL.Context.GetViewport().Height)
+				if(bottom >= 0)
 				{
+					Console.WriteLine ("sprite.Position.Y = " + sprite.Position.Y);
+					Console.WriteLine ("SpriteHeight = " + SpriteHeight);
+					Console.WriteLine("Bottom = " + bottom);
+					Console.WriteLine(Director.Instance.GL.Context.GetViewport().Height);
+					
 					sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - 3);
 				}
 				else
 				{
-					
+					//Console.WriteLine ("In bottom Else!");
 				}
 			}
 		}	

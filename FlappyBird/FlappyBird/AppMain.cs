@@ -18,6 +18,8 @@ namespace FlappyBird
 		private static Sce.PlayStation.HighLevel.UI.Scene 				uiScene;
 		private static Sce.PlayStation.HighLevel.UI.Label				scoreLabel;
 		
+		// Create our Rectangle array of coins
+		private static Coin[] 	coins;
 		private static Obstacle[]	obstacles;
 		private static Bird			bird;
 		private static Background	background;
@@ -86,6 +88,11 @@ namespace FlappyBird
 			obstacles[0] = new Obstacle(Director.Instance.GL.Context.GetViewport().Width*0.5f, gameScene);	
 			obstacles[1] = new Obstacle(Director.Instance.GL.Context.GetViewport().Width, gameScene);
 			
+			// Create some coins.
+			coins = new Coin[2];
+			coins[0] = new Coin(gameScene, ref obstacles[0]);
+			coins[1] = new Coin(gameScene, ref obstacles[1]);
+			
 			//Run the scene.
 			Director.Instance.RunWithScene(gameScene, true);
 		}
@@ -104,16 +111,22 @@ namespace FlappyBird
 			// Check to see if the bird has collided with a tube
 			for(int i = 0; i < 2; i++)
 			{
-				if(CollisionCheck(bird.PositionX, bird.PositionY, bird.SpriteWidth, bird.SpriteHeight, 
-			               	   obstacles[i].PositionX, obstacles[i].PositionY, obstacles[i].Width, obstacles[i].Height))
+				if(obstacles[i].HasCollidedWith(bird.Sprite))
 				{
 					//bird.Alive = false;
-					//bird.PositionX = -100;
-					//bird.PositionY = -100;
-					bird.Position = new Vector2(-100, -100);
+					//Console.WriteLine ("Collided with Obstacle!");
 				}
 			}
 			
+			// Check to see if the bird has collided with a coin
+			for(int i = 0; i < 2; i++)
+			{
+				if(coins[i].HasCollidedWith(bird.Sprite))
+				{
+					//bird.Alive = false;
+					Console.WriteLine ("Collided with Coin!");
+				}
+			}
 //			if(CollisionCheck(bird, obstacles))
 //			{
 //				Console.WriteLine ("Collision!!!");
@@ -130,31 +143,16 @@ namespace FlappyBird
 				//Update the obstacles.
 				foreach(Obstacle obstacle in obstacles)
 					obstacle.Update(0.0f);
+				
+				coins[0].Update (0.0f, ref obstacles[0]);
+				coins[1].Update (0.0f, ref obstacles[1]);
+				
+				//Update the coins
+//				for(int i = 0; i < 2; i++)
+//				{
+//					coins[i].Update (0.0f, ref obstacles[i]);
+//				}
 			}
-		}
-		
-		public static bool CollisionCheck(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2)
-		{
-			
-			float left1 = x1;
-			float left2 = x2;
-			float right1 = x1 + width1;
-			float right2 = x2 + width2;
-			float top1 = y1;
-			float top2 = y2;
-			float bottom1 = y1 + height1;
-			float bottom2 = y2 + height2;
-			
-			if (bottom1 < top2) 
-				return false;
-			if (top1 > bottom2)
-				return false;
-			if (right1 < left2) 
-				return false;
-			if (left1 > right2) 
-				return false;
-
-			return true;
 		}
 
 		

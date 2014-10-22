@@ -11,6 +11,7 @@ namespace FlappyBird
 	public class Obstacle
 	{
 		const float kGap = 200.0f;
+		const int kNumOfPipes = 2;
 		
 		//Private variables.
 		private SpriteUV[] 	sprites;
@@ -18,6 +19,8 @@ namespace FlappyBird
 		private TextureInfo	textureInfoBottom;
 		private float		width;
 		private float		height;
+		//Bounds2 topBounds;
+		//Bounds2 bottomBounds;
 		
 		public float Width{ get{ return width; } }
 		public float Height{ get{ return height; } }
@@ -52,7 +55,6 @@ namespace FlappyBird
 			Bounds2 b = sprites[0].Quad.Bounds2();
 			width  = b.Point10.X;
 			height = b.Point01.Y;
-			//Console.WriteLine("Width of tube = " + width);
 			
 			//Position pipes.
 			sprites[0].Position = new Vector2(startX,
@@ -103,9 +105,30 @@ namespace FlappyBird
 			return randomPosition;
 		}
 		
-		public bool HasCollidedWith(SpriteUV sprite)
+		public bool HasCollidedWith(SpriteUV bird)
 		{
+			Bounds2 b = bird.Quad.Bounds2();
+			float birdWidth  = b.Point10.X;
+			float birdHeight = b.Point01.Y;
+			
+			float birdLeft = bird.Position.X + (birdWidth*0.1f);
+			float birdRight = bird.Position.X + (birdWidth*0.9f);
+			float birdBottom = bird.Position.Y;
+			float birdTop = birdBottom + birdHeight;
+			
+			for(int i = 0; i < kNumOfPipes; i++)
+			{
+				float pipeLeft = sprites[i].Position.X;
+				float pipeRight = pipeLeft + width;
+				float pipeBottom = sprites[i].Position.Y;
+				float pipeTop = pipeBottom + height;
+				
+				if ( (birdBottom < pipeTop) && (birdTop > pipeBottom) &&
+				     (birdRight > pipeLeft) && (birdLeft < pipeRight) )
+					return true;
+			}
 			return false;
+			
 		}
 	}
 }

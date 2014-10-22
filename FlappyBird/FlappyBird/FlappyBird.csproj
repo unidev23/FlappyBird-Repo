@@ -42,6 +42,7 @@
     <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\Bird.cs" />
     <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\Obstacle.cs" />
     <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\Background.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\Coin.cs" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\app.xml" />
@@ -63,5 +64,6 @@
     <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\textures\background.png" />
     <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\textures\space_ship.gif" />
     <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\textures\space_background.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\textures\coin.png" />
   </ItemGroup>
 </Project>

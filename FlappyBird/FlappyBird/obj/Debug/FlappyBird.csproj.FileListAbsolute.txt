@@ -154,3 +154,5 @@ G:\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\Flap
 G:\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\obj\Debug\convertedpdb\app.exe.mdb
 G:\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\obj\Debug\app.exe
 G:\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\obj\Debug\app.pdb
+G:\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\bin\Debug\FlappyBird-unsigned\Application\textures\coin.png
+G:\Jess%27 house\Technical Games Production\Flappy Birds Project\FlappyBird\FlappyBird\bin\Debug\FlappyBird-signed\Application\textures\coin.png
